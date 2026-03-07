@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-gray-800 bg-white antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block bg-brand-600 text-white px-5 py-2.5 rounded text-sm font-medium hover:bg-brand-700 transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-block border border-brand-600 text-brand-600 px-5 py-2.5 rounded text-sm font-medium hover:bg-brand-50 transition-colors duration-200;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold text-gray-900 mb-6;
+  }
+}
