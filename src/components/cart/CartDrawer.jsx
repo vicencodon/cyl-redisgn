@@ -76,8 +76,12 @@ export default function CartDrawer() {
             <ul className="flex-1 overflow-y-auto divide-y divide-gray-100 px-5">
               {items.map((item) => (
                 <li key={item.id} className="flex gap-3 py-4">
-                  <div className="w-16 h-16 flex-shrink-0 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <span className="text-gray-300 text-xs">img</span>
+                  <div className="w-16 h-16 flex-shrink-0 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                    {item.images?.length > 0 ? (
+                      <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = '<span class="text-gray-300 text-xs">img</span>' }} loading="lazy" />
+                    ) : (
+                      <span className="text-gray-300 text-xs">img</span>
+                    )}
                   </div>
 
                   <div className="flex-1 min-w-0">

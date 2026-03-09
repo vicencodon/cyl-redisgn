@@ -36,3 +36,13 @@ export const getProductBySlug = (slug) =>
 
 export const getFeaturedProducts = () =>
   products.filter((p) => p.isFeatured).slice(0, 6)
+
+export const getRelatedProducts = (product, limit = 4) => {
+  if (!product) return []
+  return products
+    .filter((p) =>
+      p.id !== product.id &&
+      (p.seccion === product.seccion || p.category === product.category)
+    )
+    .slice(0, limit)
+}

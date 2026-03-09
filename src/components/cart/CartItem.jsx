@@ -1,12 +1,19 @@
+import { useState } from 'react'
 import { useCart } from '../../context/CartContext'
 
 export default function CartItem({ item }) {
   const { updateQuantity, removeFromCart } = useCart()
+  const [imgError, setImgError] = useState(false)
+  const thumbSrc = !imgError && item.images?.length > 0 ? item.images[0] : null
 
   return (
     <div className="flex gap-4 py-5 border-b border-gray-100 last:border-0">
-      <div className="w-20 h-20 flex-shrink-0 bg-gray-100 rounded-lg flex items-center justify-center">
-        <span className="text-gray-300 text-xs">Sin imagen</span>
+      <div className="w-20 h-20 flex-shrink-0 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+        {thumbSrc ? (
+          <img src={thumbSrc} alt={item.name} className="w-full h-full object-cover" onError={() => setImgError(true)} loading="lazy" />
+        ) : (
+          <span className="text-gray-300 text-xs">Sin imagen</span>
+        )}
       </div>
 
       <div className="flex-1 min-w-0">

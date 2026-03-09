@@ -1,7 +1,126 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { getProductBySlug } from '../data/mockProducts'
+import { getProductBySlug, getRelatedProducts } from '../data/mockProducts'
 import { useCart } from '../context/CartContext'
+import ProductCard from '../components/ui/ProductCard'
+
+const ATTRIBUTE_LABELS = {
+  tipo: 'Tipo',
+  material: 'Material',
+  tamaño: 'Tamaño',
+  color: 'Color',
+  tipoCartera: 'Tipo de cartera',
+  tipoCalzado: 'Tipo de calzado',
+  tipoCinturon: 'Tipo de cinturón',
+  tipoPortadoc: 'Tipo',
+  tipoParaguas: 'Tipo',
+  tipoRegalo: 'Tipo',
+}
+
+function ImageGallery({ images, name, isNew, isOutlet }) {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [imgErrors, setImgErrors] = useState({})
+
+  const validImages = (images ?? []).filter((_, i) => !imgErrors[i])
+  const currentSrc = validImages.length > 0
+    ? images[selectedIndex] && !imgErrors[selectedIndex]
+      ? images[selectedIndex]
+      : validImages[0]
+    : null
+
+  const handleError = (index) => {
+    setImgErrors((prev) => ({ ...prev, [index]: true }))
+  }
+
+  return (
+    <div className="space-y-3">
+      <div className="relative aspect-square bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden">
+        {currentSrc ? (
+          <img
+            src={currentSrc}
+            alt={name}
+            className="w-full h-full object-cover"
+            onError={() => handleError(selectedIndex)}
+          />
+        ) : (
+          <div className="flex flex-col items-center gap-2 text-gray-300">
+            <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span className="text-sm">Sin imagen</span>
+          </div>
+        )}
+        <div className="absolute top-3 left-3 flex flex-col gap-1">
+          {isNew && (
+            <span className="bg-brand-600 text-white text-xs font-medium px-2 py-0.5 rounded">
+              Nuevo
+            </span>
+          )}
+          {isOutlet && (
+            <span className="bg-gray-800 text-white text-xs font-medium px-2 py-0.5 rounded">
+              Outlet
+            </span>
+          )}
+        </div>
+      </div>
+
+      {images && images.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto">
+          {images.map((src, i) =>
+            imgErrors[i] ? null : (
+              <button
+                key={i}
+                onClick={() => setSelectedIndex(i)}
+                className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${
+                  i === selectedIndex ? 'border-brand-600' : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                <img
+                  src={src}
+                  alt={`${name} ${i + 1}`}
+                  className="w-full h-full object-cover"
+                  onError={() => handleError(i)}
+                  loading="lazy"
+                />
+              </button>
+            )
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ProductAttributes({ product }) {
+  const displayAttrs = []
+
+  if (product.category) {
+    displayAttrs.push({ label: 'Categoría', value: product.category })
+  }
+
+  for (const [key, label] of Object.entries(ATTRIBUTE_LABELS)) {
+    const val = product[key]
+    if (val != null && val !== '') {
+      displayAttrs.push({ label, value: val })
+    }
+  }
+
+  if (displayAttrs.length === 0) return null
+
+  return (
+    <div className="mt-6">
+      <h3 className="text-sm font-semibold text-gray-800 mb-3">Características</h3>
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
+        {displayAttrs.map(({ label, value }) => (
+          <div key={label}>
+            <dt className="text-xs text-gray-400">{label}</dt>
+            <dd className="text-sm text-gray-700">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  )
+}
 
 export default function ProductDetail() {
   const { slug } = useParams()
@@ -10,6 +129,8 @@ export default function ProductDetail() {
   const navigate = useNavigate()
   const [added, setAdded] = useState(false)
   const [quantity, setQuantity] = useState(1)
+
+  const related = useMemo(() => getRelatedProducts(product, 4), [product])
 
   if (!product) {
     return (
@@ -51,19 +172,12 @@ export default function ProductDetail() {
       </nav>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="relative aspect-square bg-gray-100 rounded-xl flex items-center justify-center">
-          <span className="text-gray-300 text-sm">Sin imagen</span>
-          {product.isNew && (
-            <span className="absolute top-3 left-3 bg-brand-600 text-white text-xs font-medium px-2 py-0.5 rounded">
-              Nuevo
-            </span>
-          )}
-          {product.isOutlet && (
-            <span className="absolute top-3 left-3 bg-gray-800 text-white text-xs font-medium px-2 py-0.5 rounded">
-              Outlet
-            </span>
-          )}
-        </div>
+        <ImageGallery
+          images={product.images}
+          name={product.name}
+          isNew={product.isNew}
+          isOutlet={product.isOutlet}
+        />
 
         <div>
           {product.brand && (
@@ -91,20 +205,13 @@ export default function ProductDetail() {
             )}
           </div>
 
-          {(product.category || product.tipo) && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              {product.category && (
-                <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">
-                  {product.category}
-                </span>
-              )}
-              {product.tipo && (
-                <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">
-                  {product.tipo}
-                </span>
-              )}
-            </div>
+          {product.shortDescription && (
+            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+              {product.shortDescription}
+            </p>
           )}
+
+          <ProductAttributes product={product} />
 
           <div className="mt-6">
             <label className="block text-xs font-medium text-gray-600 mb-2">Cantidad</label>
@@ -142,7 +249,7 @@ export default function ProductDetail() {
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
               }`}
             >
-              {!product.inStock ? 'No disponible' : added ? '✓ Añadido al carrito' : 'Añadir al carrito'}
+              {!product.inStock ? 'No disponible' : added ? 'Añadido al carrito' : 'Añadir al carrito'}
             </button>
             <button
               onClick={handleBuyNow}
@@ -154,6 +261,26 @@ export default function ProductDetail() {
           </div>
         </div>
       </div>
+
+      {product.description && (
+        <div className="mt-12 border-t border-gray-100 pt-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">Descripción</h2>
+          <p className="text-sm text-gray-600 leading-relaxed max-w-3xl">
+            {product.description}
+          </p>
+        </div>
+      )}
+
+      {related.length > 0 && (
+        <div className="mt-12 border-t border-gray-100 pt-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-5">Productos relacionados</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {related.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -29,6 +29,7 @@ export function CartProvider({ children }) {
           price: product.price,
           originalPrice: product.originalPrice ?? null,
           inStock: product.inStock ?? true,
+          images: product.images ?? [],
           quantity,
         },
       ]
