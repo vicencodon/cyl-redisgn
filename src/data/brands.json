@@ -1,0 +1,72 @@
+[
+  {
+    "id": "samsonite",
+    "name": "Samsonite",
+    "slug": "samsonite",
+    "logo": "/images/brands/samsonite.png",
+    "description": "Líder mundial en equipaje de viaje y accesorios de calidad premium."
+  },
+  {
+    "id": "american-tourister",
+    "name": "American Tourister",
+    "slug": "american-tourister",
+    "logo": "/images/brands/american-tourister.png",
+    "description": "Equipaje colorido y funcional para viajeros jóvenes y dinámicos."
+  },
+  {
+    "id": "gabol",
+    "name": "Gabol",
+    "slug": "gabol",
+    "logo": "/images/brands/gabol.png",
+    "description": "Marca española de maletas y bolsos con diseño mediterráneo."
+  },
+  {
+    "id": "misako",
+    "name": "Misako",
+    "slug": "misako",
+    "logo": "/images/brands/misako.png",
+    "description": "Accesorios y complementos de moda a precios accesibles."
+  },
+  {
+    "id": "roncato",
+    "name": "Roncato",
+    "slug": "roncato",
+    "logo": "/images/brands/roncato.png",
+    "description": "Tradición italiana en fabricación de maletas de alta gama."
+  },
+  {
+    "id": "vogue",
+    "name": "Vogue",
+    "slug": "vogue",
+    "logo": "/images/brands/vogue.png",
+    "description": "Complementos y accesorios con estilo contemporáneo."
+  },
+  {
+    "id": "carpisa",
+    "name": "Carpisa",
+    "slug": "carpisa",
+    "logo": "/images/brands/carpisa.png",
+    "description": "Bolsos y accesorios italianos con diseño urbano y funcional."
+  },
+  {
+    "id": "petite-jolie",
+    "name": "Petite Jolie",
+    "slug": "petite-jolie",
+    "logo": "/images/brands/petite-jolie.png",
+    "description": "Accesorios femeninos con materiales innovadores y diseño fresco."
+  },
+  {
+    "id": "coronel-tapiocca",
+    "name": "Coronel Tapiocca",
+    "slug": "coronel-tapiocca",
+    "logo": "/images/brands/coronel-tapiocca.png",
+    "description": "Espíritu aventurero en mochilas, bolsos y complementos de viaje."
+  },
+  {
+    "id": "benzi",
+    "name": "Benzi",
+    "slug": "benzi",
+    "logo": "/images/brands/benzi.png",
+    "description": "Accesorios de viaje y hogar prácticos con buena relación calidad-precio."
+  }
+]
