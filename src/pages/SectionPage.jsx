@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { getSectionConfig } from '../data/sectionFilters'
-import { getProductsBySection, getPriceRange } from '../data/mockProducts'
+import { fetchProductsBySection, getPriceRange } from '../data/products'
 import { buildInitialFilters, normalizeFilters } from '../utils/filterUtils'
 import FilterSidebar from '../components/filters/FilterSidebar'
 import ProductCard from '../components/ui/ProductCard'
@@ -11,25 +11,32 @@ export default function SectionPage() {
   const slug = pathname.replace('/', '').trim()
 
   const config = useMemo(() => getSectionConfig(slug), [slug])
-  const allProducts = useMemo(() => getProductsBySection(slug), [slug])
-  const globalPriceRange = useMemo(() => getPriceRange(allProducts), [allProducts])
 
-  const [filters, setFilters] = useState(() => buildInitialFilters(globalPriceRange))
+  const [allProducts, setAllProducts] = useState([])
+  const [loadingProducts, setLoadingProducts] = useState(true)
+  const [filters, setFilters] = useState(() => buildInitialFilters([0, 300]))
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
+  // Carga productos desde Supabase al cambiar de sección
   useEffect(() => {
-    setFilters(buildInitialFilters(globalPriceRange))
+    setLoadingProducts(true)
     setSidebarOpen(false)
+    fetchProductsBySection(slug).then((prods) => {
+      setAllProducts(prods)
+      setFilters(buildInitialFilters(getPriceRange(prods)))
+      setLoadingProducts(false)
+    })
   }, [slug])
+
+  const globalPriceRange = useMemo(() => getPriceRange(allProducts), [allProducts])
 
   const safeFilters = useMemo(
     () => normalizeFilters(filters, config, globalPriceRange),
     [filters, config, globalPriceRange]
   )
 
-  const handleChange = (updated) => {
+  const handleChange = (updated) =>
     setFilters(normalizeFilters(updated, config, globalPriceRange))
-  }
 
   const handleClear = () => setFilters(buildInitialFilters(globalPriceRange))
 
@@ -72,9 +79,11 @@ export default function SectionPage() {
 
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold text-gray-900">{config.name}</h1>
-        <span className="text-sm text-gray-400">
-          {filtered.length} producto{filtered.length !== 1 ? 's' : ''}
-        </span>
+        {!loadingProducts && (
+          <span className="text-sm text-gray-400">
+            {filtered.length} producto{filtered.length !== 1 ? 's' : ''}
+          </span>
+        )}
       </div>
 
       <button
@@ -104,7 +113,13 @@ export default function SectionPage() {
         </div>
 
         <div className="flex-1 min-w-0">
-          {allProducts.length === 0 ? (
+          {loadingProducts ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="bg-gray-100 rounded-lg aspect-square animate-pulse" />
+              ))}
+            </div>
+          ) : allProducts.length === 0 ? (
             <div className="py-24 text-center">
               <p className="text-gray-400 text-sm">No hay productos en esta sección todavía.</p>
             </div>
