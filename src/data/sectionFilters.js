@@ -1,7 +1,7 @@
 const allBrands = [
   'Samsonite', 'American Tourister', 'Roncato', 'Carpisa',
-  'Eastpak', 'Kipling', 'Vogue', 'Petite Jolie',
-  'Misako', 'Tous', 'Loewe', 'Parfois',
+  'Gabol', 'Coronel Tapiocca', 'Benzi', 'Vogue',
+  'Petite Jolie', 'Misako',
 ]
 
 const COLORS = ['Negro', 'Marrón', 'Beige', 'Azul', 'Rojo', 'Verde', 'Rosa', 'Blanco', 'Gris']
@@ -10,7 +10,7 @@ const MATERIALS = ['Piel', 'Sintético', 'Tela', 'Rígida', 'Blanda']
 export const sectionConfig = {
   viaje: {
     name: 'Viaje',
-    brands: ['Samsonite', 'American Tourister', 'Roncato', 'Carpisa', 'Eastpak', 'Kipling'],
+    brands: ['Samsonite', 'American Tourister', 'Roncato', 'Carpisa', 'Gabol', 'Coronel Tapiocca', 'Misako', 'Benzi'],
     categories: [
       {
         label: 'Maletas',
@@ -33,7 +33,7 @@ export const sectionConfig = {
 
   mujer: {
     name: 'Mujer',
-    brands: ['Vogue', 'Petite Jolie', 'Misako', 'Tous', 'Loewe', 'Parfois', 'Carpisa'],
+    brands: ['Vogue', 'Petite Jolie', 'Misako', 'Carpisa'],
     categories: [
       {
         label: 'Bolsos',
@@ -63,7 +63,7 @@ export const sectionConfig = {
 
   hombre: {
     name: 'Hombre',
-    brands: ['Samsonite', 'Eastpak', 'Kipling', 'Vogue', 'Carpisa', 'Misako'],
+    brands: ['Samsonite', 'Coronel Tapiocca', 'Carpisa', 'Vogue', 'Misako', 'Benzi'],
     categories: [
       {
         label: 'Bolsos',
@@ -100,7 +100,7 @@ export const sectionConfig = {
 
   complementos: {
     name: 'Complementos',
-    brands: ['Samsonite', 'Misako', 'Petite Jolie', 'Carpisa', 'Tous'],
+    brands: ['Samsonite', 'Misako', 'Petite Jolie', 'Vogue'],
     categories: [
       {
         label: 'Porta-documentos',

@@ -1,0 +1,1007 @@
+[
+  {
+    "id": "prod-001",
+    "slug": "maleta-cabina-rigida-azul-samsonite",
+    "name": "Maleta cabina rígida azul 20\"",
+    "brand": "Samsonite",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "cabina",
+    "price": 89.95,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": true,
+    "stock": 8,
+    "shortDescription": "Maleta de cabina ligera y resistente para escapadas cortas.",
+    "description": "Maleta rígida de cabina con diseño ligero, interior forrado y ruedas multidireccionales. Cierre TSA integrado. Ideal para viajes cortos y desplazamientos frecuentes.",
+    "images": [
+      "/images/products/viaje/maleta-cabina-rigida-azul-1.jpg",
+      "/images/products/viaje/maleta-cabina-rigida-azul-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Cabina",
+      "material": "Rígida",
+      "tamaño": "Cabina",
+      "color": ["Azul"]
+    }
+  },
+  {
+    "id": "prod-002",
+    "slug": "maleta-cabina-negra-slim-roncato",
+    "name": "Maleta cabina negra slim",
+    "brand": "Roncato",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "cabina",
+    "price": 79.00,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 5,
+    "shortDescription": "Maleta slim de cabina perfecta para viajes de negocios.",
+    "description": "Diseño ultra slim con compartimento para portátil, interior organizado y cerradura de combinación. Perfecta para viajeros frecuentes.",
+    "images": [
+      "/images/products/viaje/maleta-cabina-negra-slim-1.jpg",
+      "/images/products/viaje/maleta-cabina-negra-slim-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Cabina",
+      "material": "Rígida",
+      "tamaño": "Cabina",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-003",
+    "slug": "maleta-cabina-rosa-expandible-american-tourister",
+    "name": "Maleta cabina rosa expandible",
+    "brand": "American Tourister",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "cabina",
+    "price": 95.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 3,
+    "shortDescription": "Maleta expandible ideal para maximizar tu equipaje de mano.",
+    "description": "Maleta de cabina con sistema expandible que ofrece hasta un 20% más de capacidad. Exterior resistente a los arañazos y ruedas silenciosas.",
+    "images": [
+      "/images/products/viaje/maleta-cabina-rosa-expandible-1.jpg",
+      "/images/products/viaje/maleta-cabina-rosa-expandible-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Cabina",
+      "material": "Rígida",
+      "tamaño": "Cabina",
+      "color": ["Rosa"]
+    }
+  },
+  {
+    "id": "prod-004",
+    "slug": "maleta-mediana-negra-samsonite",
+    "name": "Maleta mediana negra 24\"",
+    "brand": "Samsonite",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "mediana",
+    "price": 119.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 6,
+    "shortDescription": "Maleta mediana ideal para viajes de una semana.",
+    "description": "Maleta rígida de 24 pulgadas con capacidad para viajes de 5 a 7 días. Interior con separadores, correas de sujeción y bolsillo de malla.",
+    "images": [
+      "/images/products/viaje/maleta-mediana-negra-1.jpg",
+      "/images/products/viaje/maleta-mediana-negra-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Mediana",
+      "material": "Rígida",
+      "tamaño": "Mediana",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-005",
+    "slug": "maleta-mediana-verde-oliva-gabol",
+    "name": "Maleta mediana verde oliva 24\"",
+    "brand": "Gabol",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "mediana",
+    "price": 99.00,
+    "oldPrice": 139.00,
+    "isNew": false,
+    "isOutlet": true,
+    "isFeatured": false,
+    "stock": 2,
+    "shortDescription": "Maleta mediana blanda con diseño funcional y ligero.",
+    "description": "Maleta blanda de tamaño mediano con bolsillos exteriores, asa telescópica reforzada y forro interior desmontable. Peso ultraligero de 3.2 kg.",
+    "images": [
+      "/images/products/viaje/maleta-mediana-verde-oliva-1.jpg",
+      "/images/products/viaje/maleta-mediana-verde-oliva-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Mediana",
+      "material": "Blanda",
+      "tamaño": "Mediana",
+      "color": ["Verde"]
+    }
+  },
+  {
+    "id": "prod-006",
+    "slug": "maleta-grande-roja-carpisa",
+    "name": "Maleta grande roja 28\"",
+    "brand": "Carpisa",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "grande",
+    "price": 139.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 4,
+    "shortDescription": "Maleta grande para viajes largos con máxima capacidad.",
+    "description": "Maleta de gran capacidad con exterior semi-rígido, cuatro ruedas giratorias y cierre con cremallera doble. Incluye candado con combinación.",
+    "images": [
+      "/images/products/viaje/maleta-grande-roja-1.jpg",
+      "/images/products/viaje/maleta-grande-roja-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Grande",
+      "material": "Blanda",
+      "tamaño": "Grande",
+      "color": ["Rojo"]
+    }
+  },
+  {
+    "id": "prod-007",
+    "slug": "maleta-grande-gris-roncato",
+    "name": "Maleta grande gris 28\"",
+    "brand": "Roncato",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "grande",
+    "price": 149.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 3,
+    "shortDescription": "Maleta grande rígida premium para viajes exigentes.",
+    "description": "Maleta grande de policarbonato 100% con cierre TSA, ruedas Hinomoto de doble rodamiento e interior completamente forrado con compartimentos organizadores.",
+    "images": [
+      "/images/products/viaje/maleta-grande-gris-1.jpg",
+      "/images/products/viaje/maleta-grande-gris-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Grande",
+      "material": "Rígida",
+      "tamaño": "Grande",
+      "color": ["Gris"]
+    }
+  },
+  {
+    "id": "prod-008",
+    "slug": "juego-maletas-azul-marino-gabol",
+    "name": "Juego 3 maletas azul marino",
+    "brand": "Gabol",
+    "section": "viaje",
+    "category": "maletas",
+    "subcategory": "juego",
+    "price": 199.00,
+    "oldPrice": 249.00,
+    "isNew": false,
+    "isOutlet": true,
+    "isFeatured": false,
+    "stock": 2,
+    "shortDescription": "Juego completo de tres maletas para toda la familia.",
+    "description": "Set de tres maletas rígidas (cabina, mediana y grande) con diseño coordinado, ruedas 360° y cierre TSA. La solución perfecta para viajes en familia.",
+    "images": [
+      "/images/products/viaje/juego-maletas-azul-marino-1.jpg",
+      "/images/products/viaje/juego-maletas-azul-marino-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Juego de maletas",
+      "material": "Rígida",
+      "tamaño": "Grande",
+      "color": ["Azul"]
+    }
+  },
+  {
+    "id": "prod-009",
+    "slug": "mochila-viaje-verde-coronel-tapiocca",
+    "name": "Mochila de viaje verde 40L",
+    "brand": "Coronel Tapiocca",
+    "section": "viaje",
+    "category": "mochilas de viaje",
+    "subcategory": null,
+    "price": 49.95,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": true,
+    "stock": 10,
+    "shortDescription": "Mochila de viaje con gran capacidad y diseño aventurero.",
+    "description": "Mochila de 40 litros con apertura tipo maleta, compartimento para portátil, correas ajustables acolchadas y múltiples bolsillos organizadores. Resistente al agua.",
+    "images": [
+      "/images/products/viaje/mochila-viaje-verde-1.jpg",
+      "/images/products/viaje/mochila-viaje-verde-2.jpg"
+    ],
+    "attributes": {
+      "color": ["Verde"]
+    }
+  },
+  {
+    "id": "prod-010",
+    "slug": "bolsa-viaje-lona-marron-carpisa",
+    "name": "Bolsa de viaje lona marrón",
+    "brand": "Carpisa",
+    "section": "viaje",
+    "category": "bolsas de viaje",
+    "subcategory": null,
+    "price": 39.00,
+    "oldPrice": 55.00,
+    "isNew": false,
+    "isOutlet": true,
+    "isFeatured": false,
+    "stock": 3,
+    "shortDescription": "Bolsa de viaje clásica en lona resistente.",
+    "description": "Bolsa de viaje de lona con asas reforzadas, bandolera desmontable y bolsillo exterior con cremallera. Estilo clásico y funcional.",
+    "images": [
+      "/images/products/viaje/bolsa-viaje-lona-marron-1.jpg",
+      "/images/products/viaje/bolsa-viaje-lona-marron-2.jpg"
+    ],
+    "attributes": {
+      "color": ["Marrón"]
+    }
+  },
+  {
+    "id": "prod-011",
+    "slug": "neceser-transparente-viaje-misako",
+    "name": "Neceser transparente viaje",
+    "brand": "Misako",
+    "section": "viaje",
+    "category": "neceseres",
+    "subcategory": null,
+    "price": 12.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 15,
+    "shortDescription": "Neceser transparente homologado para cabina de avión.",
+    "description": "Neceser de PVC transparente que cumple con la normativa de equipaje de mano para líquidos. Cierre de cremallera y capacidad de 1 litro.",
+    "images": [
+      "/images/products/viaje/neceser-transparente-1.jpg",
+      "/images/products/viaje/neceser-transparente-2.jpg"
+    ],
+    "attributes": {
+      "color": ["Beige"]
+    }
+  },
+  {
+    "id": "prod-012",
+    "slug": "bascula-digital-equipaje-benzi",
+    "name": "Báscula digital para equipaje",
+    "brand": "Benzi",
+    "section": "viaje",
+    "category": "accesorios",
+    "subcategory": null,
+    "price": 9.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 20,
+    "shortDescription": "Báscula digital portátil para pesar tu equipaje.",
+    "description": "Báscula digital de mano con pantalla LCD retroiluminada, capacidad máxima de 50 kg y función de tara. Incluye pila. Imprescindible para evitar sobrecargos.",
+    "images": [
+      "/images/products/viaje/bascula-digital-equipaje-1.jpg"
+    ],
+    "attributes": {
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-013",
+    "slug": "bolso-bandolera-negro-piel-vogue",
+    "name": "Bolso bandolera negro piel",
+    "brand": "Vogue",
+    "section": "mujer",
+    "category": "bolsos",
+    "subcategory": "bandolera",
+    "price": 49.95,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": true,
+    "stock": 7,
+    "shortDescription": "Bolso bandolera de piel elegante para uso diario.",
+    "description": "Bolso bandolera de piel genuina con forro interior, bolsillo con cremallera y cierre magnético. Correa ajustable y acabados metálicos en dorado.",
+    "images": [
+      "/images/products/mujer/bolso-bandolera-negro-piel-1.jpg",
+      "/images/products/mujer/bolso-bandolera-negro-piel-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Bandolera",
+      "material": "Piel",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-014",
+    "slug": "bolso-shopper-beige-petite-jolie",
+    "name": "Bolso shopper beige grande",
+    "brand": "Petite Jolie",
+    "section": "mujer",
+    "category": "bolsos",
+    "subcategory": "shopper",
+    "price": 42.00,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 5,
+    "shortDescription": "Bolso shopper grande y versátil para el día a día.",
+    "description": "Bolso shopper de gran capacidad en material sintético de alta calidad. Interior espacioso con organizador, ideal para trabajo y compras.",
+    "images": [
+      "/images/products/mujer/bolso-shopper-beige-1.jpg",
+      "/images/products/mujer/bolso-shopper-beige-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Shopper",
+      "material": "Sintético",
+      "color": ["Beige"]
+    }
+  },
+  {
+    "id": "prod-015",
+    "slug": "bolso-clutch-dorado-noche-misako",
+    "name": "Bolso clutch dorado noche",
+    "brand": "Misako",
+    "section": "mujer",
+    "category": "bolsos",
+    "subcategory": "clutch",
+    "price": 22.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 8,
+    "shortDescription": "Clutch elegante para eventos y salidas nocturnas.",
+    "description": "Clutch con acabado metalizado dorado, cadena desmontable para usar como bandolera y cierre de presión. Perfecto para bodas, fiestas y cenas.",
+    "images": [
+      "/images/products/mujer/bolso-clutch-dorado-1.jpg",
+      "/images/products/mujer/bolso-clutch-dorado-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Clutch",
+      "material": "Sintético",
+      "color": ["Beige"]
+    }
+  },
+  {
+    "id": "prod-016",
+    "slug": "mochila-mujer-rosa-casual-carpisa",
+    "name": "Mochila mujer rosa casual",
+    "brand": "Carpisa",
+    "section": "mujer",
+    "category": "bolsos",
+    "subcategory": "mochila",
+    "price": 58.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 4,
+    "shortDescription": "Mochila casual y femenina para el día a día.",
+    "description": "Mochila de diseño femenino con compartimento acolchado para tablet, bolsillo frontal con cremallera y tirantes ajustables. Tejido resistente al agua.",
+    "images": [
+      "/images/products/mujer/mochila-mujer-rosa-1.jpg",
+      "/images/products/mujer/mochila-mujer-rosa-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Mochila",
+      "material": "Sintético",
+      "color": ["Rosa"]
+    }
+  },
+  {
+    "id": "prod-017",
+    "slug": "cartera-billetera-marron-vogue",
+    "name": "Cartera billetera marrón mediana",
+    "brand": "Vogue",
+    "section": "mujer",
+    "category": "carteras",
+    "subcategory": "mediana",
+    "price": 19.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 10,
+    "shortDescription": "Cartera de piel con múltiples compartimentos.",
+    "description": "Cartera mediana de piel genuina con monedero con cremallera, espacio para tarjetas y billetes, y compartimento para documentos. Cierre de botón.",
+    "images": [
+      "/images/products/mujer/cartera-billetera-marron-1.jpg",
+      "/images/products/mujer/cartera-billetera-marron-2.jpg"
+    ],
+    "attributes": {
+      "tipoCartera": "Mediana",
+      "material": "Piel",
+      "color": ["Marrón"]
+    }
+  },
+  {
+    "id": "prod-018",
+    "slug": "cartera-grande-roja-petite-jolie",
+    "name": "Cartera grande roja con monedero",
+    "brand": "Petite Jolie",
+    "section": "mujer",
+    "category": "carteras",
+    "subcategory": "grande",
+    "price": 24.95,
+    "oldPrice": 32.00,
+    "isNew": false,
+    "isOutlet": true,
+    "isFeatured": false,
+    "stock": 3,
+    "shortDescription": "Cartera grande con monedero integrado y espacio para todo.",
+    "description": "Cartera de gran tamaño con múltiples compartimentos para tarjetas, monedero con cremallera central y espacio para móvil. Material sintético de alta calidad.",
+    "images": [
+      "/images/products/mujer/cartera-grande-roja-1.jpg",
+      "/images/products/mujer/cartera-grande-roja-2.jpg"
+    ],
+    "attributes": {
+      "tipoCartera": "Grande",
+      "material": "Sintético",
+      "color": ["Rojo"]
+    }
+  },
+  {
+    "id": "prod-019",
+    "slug": "zapatillas-casa-mujer-rosa-misako",
+    "name": "Zapatillas de casa mujer rosa",
+    "brand": "Misako",
+    "section": "mujer",
+    "category": "calzado",
+    "subcategory": "casa",
+    "price": 14.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 12,
+    "shortDescription": "Zapatillas de casa suaves y cómodas.",
+    "description": "Zapatillas de casa con suela antideslizante, forro de pelo suave y diseño abierto. Máxima comodidad para el hogar.",
+    "images": [
+      "/images/products/mujer/zapatillas-casa-rosa-1.jpg"
+    ],
+    "attributes": {
+      "tipoCalzado": "Casa",
+      "color": ["Rosa"]
+    }
+  },
+  {
+    "id": "prod-020",
+    "slug": "deportivas-mujer-blancas-vogue",
+    "name": "Deportivas mujer blancas",
+    "brand": "Vogue",
+    "section": "mujer",
+    "category": "calzado",
+    "subcategory": "deportivo",
+    "price": 45.00,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 6,
+    "shortDescription": "Deportivas casuales blancas con diseño moderno.",
+    "description": "Zapatillas deportivas de corte bajo con suela de goma, plantilla acolchada y diseño minimalista. Perfectas para looks urbanos y casual.",
+    "images": [
+      "/images/products/mujer/deportivas-mujer-blancas-1.jpg",
+      "/images/products/mujer/deportivas-mujer-blancas-2.jpg"
+    ],
+    "attributes": {
+      "tipoCalzado": "Deportivo",
+      "color": ["Blanco"]
+    }
+  },
+  {
+    "id": "prod-021",
+    "slug": "panuelo-seda-estampado-petite-jolie",
+    "name": "Pañuelo seda estampado flores",
+    "brand": "Petite Jolie",
+    "section": "mujer",
+    "category": "accesorios",
+    "subcategory": null,
+    "price": 18.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 8,
+    "shortDescription": "Pañuelo de seda con estampado floral elegante.",
+    "description": "Pañuelo cuadrado de seda suave con estampado de flores. Perfecto como complemento para bolsos, cuello o cabello. Medidas: 70x70 cm.",
+    "images": [
+      "/images/products/mujer/panuelo-seda-estampado-1.jpg"
+    ],
+    "attributes": {
+      "material": "Seda",
+      "color": ["Rosa"]
+    }
+  },
+  {
+    "id": "prod-022",
+    "slug": "gafas-sol-mujer-cat-eye-vogue",
+    "name": "Gafas de sol mujer cat-eye",
+    "brand": "Vogue",
+    "section": "mujer",
+    "category": "accesorios",
+    "subcategory": null,
+    "price": 35.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": true,
+    "stock": 5,
+    "shortDescription": "Gafas de sol estilo cat-eye con protección UV400.",
+    "description": "Gafas de sol con montura cat-eye en acetato, lentes polarizadas con protección UV400 y patillas con detalle metálico. Incluye funda.",
+    "images": [
+      "/images/products/mujer/gafas-sol-cat-eye-1.jpg"
+    ],
+    "attributes": {
+      "color": ["Marrón"]
+    }
+  },
+  {
+    "id": "prod-023",
+    "slug": "bolso-mensajero-negro-samsonite",
+    "name": "Bolso mensajero negro hombre",
+    "brand": "Samsonite",
+    "section": "hombre",
+    "category": "bolsos",
+    "subcategory": "bandolera",
+    "price": 59.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 4,
+    "shortDescription": "Bolso mensajero elegante para trabajo y uso diario.",
+    "description": "Bolso bandolera con compartimento acolchado para portátil de hasta 13 pulgadas, bolsillo frontal organizador y cierre magnético. Correa ajustable.",
+    "images": [
+      "/images/products/hombre/bolso-mensajero-negro-1.jpg",
+      "/images/products/hombre/bolso-mensajero-negro-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Bandolera",
+      "material": "Sintético",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-024",
+    "slug": "mochila-hombre-azul-coronel-tapiocca",
+    "name": "Mochila hombre azul 25L",
+    "brand": "Coronel Tapiocca",
+    "section": "hombre",
+    "category": "bolsos",
+    "subcategory": "mochila",
+    "price": 55.00,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 7,
+    "shortDescription": "Mochila urbana con estilo aventurero y gran capacidad.",
+    "description": "Mochila de 25 litros con compartimento para portátil 15.6\", espalda acolchada transpirable y correas de pecho ajustables. Material impermeable.",
+    "images": [
+      "/images/products/hombre/mochila-hombre-azul-1.jpg",
+      "/images/products/hombre/mochila-hombre-azul-2.jpg"
+    ],
+    "attributes": {
+      "tipo": "Mochila",
+      "material": "Tela",
+      "color": ["Azul"]
+    }
+  },
+  {
+    "id": "prod-025",
+    "slug": "rinonera-negra-sport-carpisa",
+    "name": "Riñonera negra sport",
+    "brand": "Carpisa",
+    "section": "hombre",
+    "category": "bolsos",
+    "subcategory": "riñonera",
+    "price": 18.00,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 15,
+    "shortDescription": "Riñonera deportiva compacta y funcional.",
+    "description": "Riñonera sport con múltiples compartimentos, cremallera resistente al agua y correa ajustable. Ideal para deporte y uso urbano.",
+    "images": [
+      "/images/products/hombre/rinonera-negra-sport-1.jpg"
+    ],
+    "attributes": {
+      "tipo": "Riñonera",
+      "material": "Sintético",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-026",
+    "slug": "cartera-hombre-marron-piel-vogue",
+    "name": "Cartera hombre marrón piel",
+    "brand": "Vogue",
+    "section": "hombre",
+    "category": "carteras",
+    "subcategory": "sin monedero",
+    "price": 17.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 9,
+    "shortDescription": "Cartera clásica de piel sin monedero para hombre.",
+    "description": "Cartera americana de piel genuina con espacio para 8 tarjetas, compartimento para billetes y bolsillo oculto. Diseño elegante y funcional.",
+    "images": [
+      "/images/products/hombre/cartera-hombre-marron-1.jpg"
+    ],
+    "attributes": {
+      "tipoCartera": "Sin monedero",
+      "material": "Piel",
+      "color": ["Marrón"]
+    }
+  },
+  {
+    "id": "prod-027",
+    "slug": "tarjetero-slim-negro-samsonite",
+    "name": "Tarjetero slim negro piel",
+    "brand": "Samsonite",
+    "section": "hombre",
+    "category": "carteras",
+    "subcategory": "tarjeteros",
+    "price": 12.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 11,
+    "shortDescription": "Tarjetero slim de piel para llevar lo esencial.",
+    "description": "Tarjetero ultra delgado de piel con capacidad para 6 tarjetas y bolsillo central para billetes doblados. Protección RFID integrada.",
+    "images": [
+      "/images/products/hombre/tarjetero-slim-negro-1.jpg"
+    ],
+    "attributes": {
+      "tipoCartera": "Tarjeteros",
+      "material": "Piel",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-028",
+    "slug": "cinturon-piel-negro-clasico-vogue",
+    "name": "Cinturón piel negro clásico",
+    "brand": "Vogue",
+    "section": "hombre",
+    "category": "cinturones",
+    "subcategory": "clasicos",
+    "price": 15.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": true,
+    "stock": 8,
+    "shortDescription": "Cinturón clásico de piel para vestir y diario.",
+    "description": "Cinturón de piel genuina con hebilla clásica en metal cromado. Ancho de 3.5 cm, ideal para pantalón de vestir o vaquero. Tallas de 85 a 115 cm.",
+    "images": [
+      "/images/products/hombre/cinturon-piel-negro-1.jpg"
+    ],
+    "attributes": {
+      "tipoCinturon": "Clásicos",
+      "material": "Piel",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-029",
+    "slug": "cinturon-sport-elastico-azul-carpisa",
+    "name": "Cinturón sport elástico azul",
+    "brand": "Carpisa",
+    "section": "hombre",
+    "category": "cinturones",
+    "subcategory": "sport",
+    "price": 12.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 6,
+    "shortDescription": "Cinturón elástico sport con cierre deslizante.",
+    "description": "Cinturón trenzado elástico con cierre deslizante de metal. Se adapta a cualquier talla sin necesidad de agujeros. Perfecto para looks casual.",
+    "images": [
+      "/images/products/hombre/cinturon-sport-azul-1.jpg"
+    ],
+    "attributes": {
+      "tipoCinturon": "Sport",
+      "color": ["Azul"]
+    }
+  },
+  {
+    "id": "prod-030",
+    "slug": "zapatillas-casa-hombre-gris-benzi",
+    "name": "Zapatillas casa hombre gris",
+    "brand": "Benzi",
+    "section": "hombre",
+    "category": "calzado",
+    "subcategory": null,
+    "price": 11.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 14,
+    "shortDescription": "Zapatillas de casa cómodas con suela firme.",
+    "description": "Zapatillas de casa con suela de goma antideslizante, interior de tejido suave y diseño cerrado. Máximo confort para el hogar.",
+    "images": [
+      "/images/products/hombre/zapatillas-casa-gris-1.jpg"
+    ],
+    "attributes": {
+      "color": ["Gris"]
+    }
+  },
+  {
+    "id": "prod-031",
+    "slug": "mochila-escolar-azul-coronel-tapiocca",
+    "name": "Mochila escolar azul juvenil",
+    "brand": "Coronel Tapiocca",
+    "section": "hombre",
+    "category": "escolar",
+    "subcategory": null,
+    "price": 39.95,
+    "oldPrice": 49.95,
+    "isNew": false,
+    "isOutlet": true,
+    "isFeatured": false,
+    "stock": 5,
+    "shortDescription": "Mochila escolar resistente con estilo juvenil.",
+    "description": "Mochila escolar de gran capacidad con compartimento para portátil, bolsillo frontal organizador y espalda acolchada. Material resistente a salpicaduras.",
+    "images": [
+      "/images/products/hombre/mochila-escolar-azul-1.jpg",
+      "/images/products/hombre/mochila-escolar-azul-2.jpg"
+    ],
+    "attributes": {
+      "color": ["Azul"]
+    }
+  },
+  {
+    "id": "prod-032",
+    "slug": "bolso-juvenil-estampado-verde-misako",
+    "name": "Bolso juvenil estampado verde",
+    "brand": "Misako",
+    "section": "hombre",
+    "category": "bolsos juveniles",
+    "subcategory": "mochila",
+    "price": 29.95,
+    "oldPrice": 38.00,
+    "isNew": false,
+    "isOutlet": true,
+    "isFeatured": false,
+    "stock": 3,
+    "shortDescription": "Mochila juvenil con estampado original y colorido.",
+    "description": "Mochila juvenil con estampado exclusivo, bolsillo frontal, compartimento principal amplio y tirantes acolchados ajustables. Ideal para instituto.",
+    "images": [
+      "/images/products/hombre/bolso-juvenil-verde-1.jpg"
+    ],
+    "attributes": {
+      "tipo": "Mochila",
+      "color": ["Verde"]
+    }
+  },
+  {
+    "id": "prod-033",
+    "slug": "maletin-portatil-negro-samsonite",
+    "name": "Maletín portátil negro 15\"",
+    "brand": "Samsonite",
+    "section": "complementos",
+    "category": "porta-documentos",
+    "subcategory": "maletin",
+    "price": 55.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": true,
+    "stock": 5,
+    "shortDescription": "Maletín profesional con protección para portátil.",
+    "description": "Maletín de negocios con compartimento acolchado para portátil de hasta 15 pulgadas, bolsillos organizadores y asa reforzada. Material resistente al agua.",
+    "images": [
+      "/images/products/complementos/maletin-portatil-negro-1.jpg",
+      "/images/products/complementos/maletin-portatil-negro-2.jpg"
+    ],
+    "attributes": {
+      "tipoPortadoc": "Maletín",
+      "color": ["Negro"]
+    }
+  },
+  {
+    "id": "prod-034",
+    "slug": "mochila-portatil-gris-samsonite",
+    "name": "Mochila portátil gris 15.6\"",
+    "brand": "Samsonite",
+    "section": "complementos",
+    "category": "porta-documentos",
+    "subcategory": "mochila portatil",
+    "price": 45.00,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 6,
+    "shortDescription": "Mochila para portátil con diseño urbano y profesional.",
+    "description": "Mochila con compartimento acolchado para portátil de hasta 15.6\", espalda transpirable, múltiples bolsillos organizadores y puerto USB integrado.",
+    "images": [
+      "/images/products/complementos/mochila-portatil-gris-1.jpg",
+      "/images/products/complementos/mochila-portatil-gris-2.jpg"
+    ],
+    "attributes": {
+      "tipoPortadoc": "Mochila portátil",
+      "color": ["Gris"]
+    }
+  },
+  {
+    "id": "prod-035",
+    "slug": "carpeta-portadocumentos-piel-vogue",
+    "name": "Carpeta portadocumentos piel",
+    "brand": "Vogue",
+    "section": "complementos",
+    "category": "porta-documentos",
+    "subcategory": "carpetas",
+    "price": 28.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 7,
+    "shortDescription": "Carpeta de piel elegante para documentos y reuniones.",
+    "description": "Carpeta portadocumentos de piel con bloc de notas incluido, bolsillos para tarjetas, porta-bolígrafos y cierre con cremallera. Formato A4.",
+    "images": [
+      "/images/products/complementos/carpeta-portadocumentos-1.jpg"
+    ],
+    "attributes": {
+      "tipoPortadoc": "Carpetas",
+      "material": "Piel",
+      "color": ["Marrón"]
+    }
+  },
+  {
+    "id": "prod-036",
+    "slug": "paraguas-largo-automatico-azul-misako",
+    "name": "Paraguas largo automático azul",
+    "brand": "Misako",
+    "section": "complementos",
+    "category": "paraguas",
+    "subcategory": "largo",
+    "price": 16.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 10,
+    "shortDescription": "Paraguas largo con apertura automática y varillas reforzadas.",
+    "description": "Paraguas largo con apertura automática, 8 varillas reforzadas a prueba de viento, mango curvo y funda protectora. Diámetro de 105 cm.",
+    "images": [
+      "/images/products/complementos/paraguas-largo-azul-1.jpg"
+    ],
+    "attributes": {
+      "tipoParaguas": "Largo",
+      "color": ["Azul"]
+    }
+  },
+  {
+    "id": "prod-037",
+    "slug": "paraguas-plegable-rojo-misako",
+    "name": "Paraguas plegable rojo",
+    "brand": "Misako",
+    "section": "complementos",
+    "category": "paraguas",
+    "subcategory": "plegable",
+    "price": 10.95,
+    "oldPrice": 16.00,
+    "isNew": false,
+    "isOutlet": true,
+    "isFeatured": false,
+    "stock": 8,
+    "shortDescription": "Paraguas plegable compacto para llevar en el bolso.",
+    "description": "Paraguas plegable ultraligero con apertura manual, 6 varillas de fibra de vidrio y funda con cierre. Pesa solo 200 gramos.",
+    "images": [
+      "/images/products/complementos/paraguas-plegable-rojo-1.jpg"
+    ],
+    "attributes": {
+      "tipoParaguas": "Plegable",
+      "color": ["Rojo"]
+    }
+  },
+  {
+    "id": "prod-038",
+    "slug": "set-regalo-neceser-cartera-petite-jolie",
+    "name": "Set regalo neceser y cartera",
+    "brand": "Petite Jolie",
+    "section": "complementos",
+    "category": "regalos",
+    "subcategory": "accesorios",
+    "price": 35.00,
+    "oldPrice": null,
+    "isNew": true,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 4,
+    "shortDescription": "Set de regalo con neceser y cartera a juego.",
+    "description": "Elegante set de regalo que incluye neceser con forro interior y cartera con compartimentos para tarjetas. Presentado en caja de regalo.",
+    "images": [
+      "/images/products/complementos/set-regalo-neceser-1.jpg"
+    ],
+    "attributes": {
+      "tipoRegalo": "Accesorios",
+      "color": ["Beige"]
+    }
+  },
+  {
+    "id": "prod-039",
+    "slug": "joyero-viaje-terciopelo-rosa-vogue",
+    "name": "Joyero viaje terciopelo rosa",
+    "brand": "Vogue",
+    "section": "complementos",
+    "category": "regalos",
+    "subcategory": "joyeros",
+    "price": 22.00,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 6,
+    "shortDescription": "Joyero de viaje en terciopelo para tus joyas.",
+    "description": "Joyero compacto de viaje con interior de terciopelo, compartimentos para anillos, pendientes y collares, y cierre de cremallera. Ideal para regalar.",
+    "images": [
+      "/images/products/complementos/joyero-viaje-rosa-1.jpg"
+    ],
+    "attributes": {
+      "tipoRegalo": "Joyeros",
+      "color": ["Rosa"]
+    }
+  },
+  {
+    "id": "prod-040",
+    "slug": "set-manicura-viaje-premium-vogue",
+    "name": "Set manicura viaje premium",
+    "brand": "Vogue",
+    "section": "complementos",
+    "category": "regalos",
+    "subcategory": "manicuras",
+    "price": 18.95,
+    "oldPrice": null,
+    "isNew": false,
+    "isOutlet": false,
+    "isFeatured": false,
+    "stock": 9,
+    "shortDescription": "Set de manicura de viaje con estuche elegante.",
+    "description": "Set de manicura de 8 piezas en acero inoxidable con estuche de piel. Incluye cortauñas, lima, tijeras y pinzas. Perfecto como regalo.",
+    "images": [
+      "/images/products/complementos/set-manicura-viaje-1.jpg"
+    ],
+    "attributes": {
+      "tipoRegalo": "Manicuras",
+      "color": ["Negro"]
+    }
+  }
+]
