@@ -11,6 +11,7 @@ import Checkout from './pages/Checkout'
 import OrderConfirmation from './pages/OrderConfirmation'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Favorites from './pages/Favorites'
 
 // Páginas admin
 import AdminDashboard from './pages/admin/AdminDashboard'
@@ -56,6 +57,7 @@ export default function App() {
       <Route path="/confirmacion"   element={<Layout><OrderConfirmation /></Layout>} />
       <Route path="/login"          element={<Layout><Login /></Layout>} />
       <Route path="/registro"       element={<Layout><Register /></Layout>} />
+      <Route path="/favoritos"      element={<Layout><Favorites /></Layout>} />
       {/* ── ADMIN (sin Layout público) ── */}
       <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
       <Route path="/admin/productos" element={<AdminRoute><AdminProducts /></AdminRoute>} />
