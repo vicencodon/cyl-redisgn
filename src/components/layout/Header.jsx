@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+ï»¿import { useState, useRef, useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
 import { useAuth } from '../../context/AuthContext'
@@ -29,7 +29,7 @@ function UserMenu() {
 
   if (!isLoggedIn) {
     return (
-      <Link to="/login" className="p-2 text-gray-600 hover:text-brand-700 transition-colors" aria-label="Iniciar sesión">
+      <Link to="/login" className="p-2 text-gray-600 hover:text-brand-700 transition-colors" aria-label="Iniciar sesiï¿½n">
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
@@ -72,7 +72,7 @@ function UserMenu() {
           <div className="border-t border-gray-100 py-1">
             <button onClick={handleLogout}
               className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
-              Cerrar sesión
+              Cerrar sesiï¿½n
             </button>
           </div>
         </div>
@@ -128,8 +128,8 @@ export default function Header() {
               </Link>
             )}
 
-            {/* Icono favoritos — solo si está logueado */}
-            {isLoggedIn && (
+            {/* Icono favoritos ï¿½ solo si estï¿½ logueado */}
+            {true && (
               <Link to="/favoritos"
                 className="relative p-2 text-gray-600 hover:text-brand-700 transition-colors"
                 aria-label="Favoritos">
@@ -158,9 +158,9 @@ export default function Header() {
               )}
             </Link>
 
-            {/* Menú hamburguesa móvil */}
+            {/* Menï¿½ hamburguesa mï¿½vil */}
             <button className="md:hidden p-2 text-gray-600 hover:text-brand-700"
-              onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú">
+              onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menï¿½">
               {menuOpen ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -174,7 +174,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Menú móvil */}
+        {/* Menï¿½ mï¿½vil */}
         {menuOpen && (
           <nav className="md:hidden border-t border-gray-100 py-3 flex flex-col gap-1">
             {navLinks.map(({ to, label }) => (
@@ -191,7 +191,7 @@ export default function Header() {
                 Panel admin
               </Link>
             )}
-            {isLoggedIn && (
+            {true && (
               <Link to="/favoritos"
                 className="px-2 py-2 text-sm text-gray-700 hover:text-brand-700 flex items-center gap-2"
                 onClick={() => setMenuOpen(false)}>
@@ -214,12 +214,12 @@ export default function Header() {
             {isLoggedIn ? (
               <button className="px-2 py-2 text-sm text-left text-red-600 hover:text-red-700"
                 onClick={() => { logout(); navigate('/'); setMenuOpen(false) }}>
-                Cerrar sesión
+                Cerrar sesiï¿½n
               </button>
             ) : (
               <Link to="/login" className="px-2 py-2 text-sm text-gray-700 hover:text-brand-700"
                 onClick={() => setMenuOpen(false)}>
-                Iniciar sesión
+                Iniciar sesiï¿½n
               </Link>
             )}
           </nav>

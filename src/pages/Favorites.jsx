@@ -12,10 +12,10 @@ export default function Favorites() {
   const [loading, setLoading]   = useState(true)
   const navigate = useNavigate()
 
-  // Redirigir si no está logueado
+  // Redirigir si no está logueado eliminado para permitir favoritos en localStorage a usuarios no registrados
   useEffect(() => {
-    if (!isLoggedIn) navigate('/login')
-  }, [isLoggedIn])
+    // if (!isLoggedIn) navigate('/login')
+  }, [])
 
   // Cargar productos favoritos desde Supabase
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Favorites() {
       })
   }, [favorites.join(',')])
 
-  if (!isLoggedIn) return null
+  // if (!isLoggedIn) return null
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
