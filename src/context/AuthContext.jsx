@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+﻿import { createContext, useContext, useState, useEffect, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext(null)
@@ -6,7 +6,7 @@ const AuthContext = createContext(null)
 export function AuthProvider({ children }) {
   const [user, setUser]       = useState(null)
   const [role, setRole]       = useState(null)        // 'admin' | 'customer'
-  const [isLoading, setIsLoading] = useState(true)   // true al arrancar (comprobando sesi�n)
+  const [isLoading, setIsLoading] = useState(true)   // true al arrancar (comprobando sesión)
   const [error, setError]     = useState(null)
 
   const fetchRole = useCallback(async (userId) => {
@@ -24,9 +24,9 @@ export function AuthProvider({ children }) {
     return resolvedRole
   }, [])
 
-  // Comprueba si hay sesi�n activa al montar y escucha cambios
+  // Comprueba si hay sesión activa al montar y escucha cambios
   useEffect(() => {
-    // Sesi�n inicial
+    // Sesión inicial
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
       fetchRole(session?.user?.id)
@@ -47,7 +47,7 @@ export function AuthProvider({ children }) {
     setError(null)
     const { data, error: err } = await supabase.auth.signInWithPassword({ email, password })
     if (err) {
-      setError('Email o contrase�a incorrectos')
+      setError('Email o contraseña incorrectos')
       setIsLoading(false)
       return { success: false }
     }

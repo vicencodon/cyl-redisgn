@@ -1,4 +1,4 @@
-import { useState } from 'react'
+ï»¿import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
@@ -22,7 +22,7 @@ export default function Login() {
     <div className="min-h-[70vh] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-semibold text-gray-900">Iniciar sesión</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">Iniciar sesiÃ³n</h1>
           <p className="text-sm text-gray-500 mt-1">Accede a tu cuenta de CyL Complementos</p>
         </div>
 
@@ -51,7 +51,7 @@ export default function Login() {
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Contraseña
+              ContraseÃ±a
             </label>
             <input
               id="password"
@@ -60,7 +60,7 @@ export default function Login() {
               required
               value={form.password}
               onChange={handleChange}
-              placeholder="••••••••"
+              placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
               className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent"
             />
           </div>
@@ -70,14 +70,14 @@ export default function Login() {
             disabled={isLoading}
             className="w-full btn-primary py-2.5 text-sm disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isLoading ? 'Entrando...' : 'Iniciar sesión'}
+            {isLoading ? 'Entrando...' : 'Iniciar sesiÃ³n'}
           </button>
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">
-          ¿No tienes cuenta?{' '}
+          Â¿No tienes cuenta?{' '}
           <Link to="/registro" className="text-brand-700 font-medium hover:underline">
-            Regístrate
+            RegÃ­strate
           </Link>
         </p>
       </div>
