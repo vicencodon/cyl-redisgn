@@ -2,12 +2,15 @@ import { useState } from 'react'
 import { supabase } from '../../lib/supabase'
 
 // Genera la URL pública de Supabase Storage para una imagen de producto
-export function getProductImageUrl(productId) {
+export function getProductImageUrl(productId, updatedAt) {
   if (!productId) return null
   const { data } = supabase.storage
     .from('product-images')
     .getPublicUrl(`products/${productId}.jpg`)
-  return data?.publicUrl ?? null
+  
+  // Añadir timestamp como cache-buster
+  const ts = updatedAt ? new Date(updatedAt).getTime() : ''
+  return ts ? `${data?.publicUrl}?v=${ts}` : (data?.publicUrl ?? null)
 }
 
 // Placeholder SVG con el icono apropiado según la sección
