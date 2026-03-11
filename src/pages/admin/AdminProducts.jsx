@@ -14,6 +14,18 @@ function slugify(str) {
 }
 
 // ── Modal de formulario ──────────────────────────────────────
+const ModalInput = ({ label, value, onChange, type = 'text', half }) => (
+  <div className={half ? 'col-span-1' : 'col-span-2'}>
+    <label className="block text-xs font-medium text-gray-600 mb-1">{label}</label>
+    <input
+      type={type}
+      value={value}
+      onChange={onChange}
+      className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400"
+    />
+  </div>
+)
+
 function ProductModal({ product, onClose, onSaved }) {
   const isNew = !product?.id
   const [form, setForm] = useState(isNew ? EMPTY : {
@@ -47,18 +59,6 @@ function ProductModal({ product, onClose, onSaved }) {
     onSaved()
   }
 
-  const Input = ({ label, field, type = 'text', half }) => (
-    <div className={half ? 'col-span-1' : 'col-span-2'}>
-      <label className="block text-xs font-medium text-gray-600 mb-1">{label}</label>
-      <input
-        type={type}
-        value={form[field]}
-        onChange={(e) => set(field, e.target.value)}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400"
-      />
-    </div>
-  )
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
@@ -75,8 +75,8 @@ function ProductModal({ product, onClose, onSaved }) {
         {/* Form */}
         <div className="overflow-y-auto px-6 py-5 flex-1">
           <div className="grid grid-cols-2 gap-4">
-            <Input label="Nombre *" field="name" />
-            <Input label="Marca" field="brand" half />
+            <ModalInput label="Nombre *" value={form.name} onChange={(e) => set('name', e.target.value)} />
+            <ModalInput label="Marca" value={form.brand} onChange={(e) => set('brand', e.target.value)} half />
             <div className="col-span-1">
               <label className="block text-xs font-medium text-gray-600 mb-1">Sección *</label>
               <select value={form.section} onChange={(e) => set('section', e.target.value)}
@@ -84,13 +84,13 @@ function ProductModal({ product, onClose, onSaved }) {
                 {SECTIONS.map((s) => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
               </select>
             </div>
-            <Input label="Categoría" field="category" half />
-            <Input label="Subcategoría" field="subcategory" half />
-            <Input label="Slug (URL)" field="slug" half />
-            <Input label="Precio (€) *" field="price" type="number" half />
-            <Input label="Precio anterior (€)" field="old_price" type="number" half />
-            <Input label="Stock" field="stock" type="number" half />
-            <Input label="Descripción corta" field="short_description" />
+            <ModalInput label="Categoría" value={form.category} onChange={(e) => set('category', e.target.value)} half />
+            <ModalInput label="Subcategoría" value={form.subcategory} onChange={(e) => set('subcategory', e.target.value)} half />
+            <ModalInput label="Slug (URL)" value={form.slug} onChange={(e) => set('slug', e.target.value)} half />
+            <ModalInput label="Precio (€) *" value={form.price} onChange={(e) => set('price', e.target.value)} type="number" half />
+            <ModalInput label="Precio anterior (€)" value={form.old_price} onChange={(e) => set('old_price', e.target.value)} type="number" half />
+            <ModalInput label="Stock" value={form.stock} onChange={(e) => set('stock', e.target.value)} type="number" half />
+            <ModalInput label="Descripción corta" value={form.short_description} onChange={(e) => set('short_description', e.target.value)} />
             <div className="col-span-2">
               <label className="block text-xs font-medium text-gray-600 mb-1">Descripción completa</label>
               <textarea value={form.description} onChange={(e) => set('description', e.target.value)} rows={3}
