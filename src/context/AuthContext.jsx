@@ -5,37 +5,57 @@ const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [user, setUser]       = useState(null)
-  const [isLoading, setIsLoading] = useState(true)   // true al arrancar (comprobando sesiÃ³n)
+  const [role, setRole]       = useState(null)        // 'admin' | 'customer'
+  const [isLoading, setIsLoading] = useState(true)   // true al arrancar (comprobando sesión)
   const [error, setError]     = useState(null)
 
-  // Comprueba si hay sesiÃ³n activa al montar y escucha cambios
+  const fetchRole = useCallback(async (userId) => {
+    if (!userId) {
+      setRole(null)
+      return null
+    }
+    const { data } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .single()
+    const resolvedRole = data?.role ?? 'customer'
+    setRole(resolvedRole)
+    return resolvedRole
+  }, [])
+
+  // Comprueba si hay sesión activa al montar y escucha cambios
   useEffect(() => {
-    // SesiÃ³n inicial
+    // Sesión inicial
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
+      fetchRole(session?.user?.id)
       setIsLoading(false)
     })
 
     // Listener para login / logout / refresh de token
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
+      fetchRole(session?.user?.id)
     })
 
     return () => subscription.unsubscribe()
-  }, [])
+  }, [fetchRole])
 
   const login = useCallback(async (email, password) => {
     setIsLoading(true)
     setError(null)
-    const { error: err } = await supabase.auth.signInWithPassword({ email, password })
+    const { data, error: err } = await supabase.auth.signInWithPassword({ email, password })
     if (err) {
-      setError('Email o contraseÃ±a incorrectos')
+      setError('Email o contraseña incorrectos')
       setIsLoading(false)
-      return false
+      return { success: false }
     }
+    setUser(data.session?.user ?? null)
+    const resolvedRole = await fetchRole(data.session?.user?.id)
     setIsLoading(false)
-    return true
-  }, [])
+    return { success: true, role: resolvedRole }
+  }, [fetchRole])
 
   const register = useCallback(async ({ firstName, lastName, email, password }) => {
     setIsLoading(true)
@@ -59,6 +79,7 @@ export function AuthProvider({ children }) {
   const logout = useCallback(async () => {
     await supabase.auth.signOut()
     setError(null)
+    setRole(null)
   }, [])
 
   // Datos del perfil aplanados para compatibilidad con el resto de la app
@@ -75,6 +96,8 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         user: profile,
+        role,
+        isAdmin: role === 'admin',
         isLoggedIn: !!user,
         isLoading,
         error,

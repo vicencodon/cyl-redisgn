@@ -33,10 +33,13 @@ export function useImageUpload() {
       .from('product-images')
       .getPublicUrl(path)
 
-    // Actualizar el campo images en la tabla products
+    // Actualizar el campo images y timestamp en la tabla products
     await supabase
       .from('products')
-      .update({ images: [data.publicUrl] })
+      .update({
+        images: [data.publicUrl],
+        image_updated_at: new Date().toISOString(),
+      })
       .eq('id', productId)
 
     setUploading(false)
@@ -52,7 +55,7 @@ export function useImageUpload() {
     if (!delErr) {
       await supabase
         .from('products')
-        .update({ images: [] })
+        .update({ images: [], image_updated_at: new Date().toISOString() })
         .eq('id', productId)
     }
     return !delErr
