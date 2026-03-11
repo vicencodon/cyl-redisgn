@@ -26,7 +26,53 @@ const ModalInput = ({ label, value, onChange, type = 'text', half }) => (
   </div>
 )
 
-function ProductModal({ product, onClose, onSaved }) {
+const SelectOrInput = ({ label, value, onChange, options, half }) => {
+  const isCustom = value && !options.includes(value);
+  const [mode, setMode] = useState(isCustom ? 'input' : 'select');
+
+  return (
+    <div className={half ? 'col-span-1' : 'col-span-2'}>
+      <label className="flex justify-between items-end text-xs font-medium text-gray-600 mb-1">
+        <span>{label}</span>
+        <button 
+          type="button" 
+          onClick={() => {
+            setMode(mode === 'select' ? 'input' : 'select');
+            onChange({ target: { value: '' } });
+          }} 
+          className="text-brand-600 hover:text-brand-700 hover:underline text-[10px] uppercase font-bold tracking-wider"
+          tabIndex="-1"
+        >
+          {mode === 'select' ? '+ Nueva' : '‹ Lista'}
+        </button>
+      </label>
+      {mode === 'select' ? (
+        <select
+          value={value}
+          onChange={onChange}
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-400"
+        >
+          <option value="">-- Seleccionar --</option>
+          {options.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+          placeholder="Escribe..."
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400"
+        />
+      )}
+    </div>
+  );
+};
+
+function ProductModal({ product, products = [], onClose, onSaved }) {
   const isNew = !product?.id
   const [form, setForm] = useState(isNew ? EMPTY : {
     ...EMPTY, ...product,
@@ -36,6 +82,9 @@ function ProductModal({ product, onClose, onSaved }) {
   })
   const [saving, setSaving] = useState(false)
   const [error, setError]   = useState(null)
+
+  const uniqueCategories = [...new Set(products.map(p => p.category).filter(Boolean))].sort()
+  const uniqueSubcategories = [...new Set(products.filter(p => !form.category || p.category === form.category).map(p => p.subcategory).filter(Boolean))].sort()
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }))
 
@@ -84,8 +133,8 @@ function ProductModal({ product, onClose, onSaved }) {
                 {SECTIONS.map((s) => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
               </select>
             </div>
-            <ModalInput label="Categoría" value={form.category} onChange={(e) => set('category', e.target.value)} half />
-            <ModalInput label="Subcategoría" value={form.subcategory} onChange={(e) => set('subcategory', e.target.value)} half />
+            <SelectOrInput label="Categoría" value={form.category} onChange={(e) => set('category', e.target.value)} options={uniqueCategories} half />
+            <SelectOrInput label="Subcategoría" value={form.subcategory} onChange={(e) => set('subcategory', e.target.value)} options={uniqueSubcategories} half />
             <ModalInput label="Slug (URL)" value={form.slug} onChange={(e) => set('slug', e.target.value)} half />
             <ModalInput label="Precio (€) *" value={form.price} onChange={(e) => set('price', e.target.value)} type="number" half />
             <ModalInput label="Precio anterior (€)" value={form.old_price} onChange={(e) => set('old_price', e.target.value)} type="number" half />
@@ -253,6 +302,7 @@ export default function AdminProducts() {
       {modal && (
         <ProductModal
           product={modal === 'new' ? null : modal}
+          products={products}
           onClose={() => setModal(null)}
           onSaved={() => { setModal(null); load() }}
         />
