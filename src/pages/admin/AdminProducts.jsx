@@ -83,6 +83,7 @@ function ProductModal({ product, products = [], onClose, onSaved }) {
   const [saving, setSaving] = useState(false)
   const [error, setError]   = useState(null)
 
+  const uniqueSections = [...new Set([...SECTIONS, ...products.map(p => p.section).filter(Boolean)])]
   const uniqueCategories = [...new Set(products.map(p => p.category).filter(Boolean))].sort()
   const uniqueSubcategories = [...new Set(products.filter(p => !form.category || p.category === form.category).map(p => p.subcategory).filter(Boolean))].sort()
 
@@ -126,13 +127,7 @@ function ProductModal({ product, products = [], onClose, onSaved }) {
           <div className="grid grid-cols-2 gap-4">
             <ModalInput label="Nombre *" value={form.name} onChange={(e) => set('name', e.target.value)} />
             <ModalInput label="Marca" value={form.brand} onChange={(e) => set('brand', e.target.value)} half />
-            <div className="col-span-1">
-              <label className="block text-xs font-medium text-gray-600 mb-1">Sección *</label>
-              <select value={form.section} onChange={(e) => set('section', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400">
-                {SECTIONS.map((s) => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
-              </select>
-            </div>
+            <SelectOrInput label="Sección *" value={form.section} onChange={(e) => set('section', e.target.value)} options={uniqueSections} half />
             <SelectOrInput label="Categoría" value={form.category} onChange={(e) => set('category', e.target.value)} options={uniqueCategories} half />
             <SelectOrInput label="Subcategoría" value={form.subcategory} onChange={(e) => set('subcategory', e.target.value)} options={uniqueSubcategories} half />
             <ModalInput label="Slug (URL)" value={form.slug} onChange={(e) => set('slug', e.target.value)} half />
@@ -197,7 +192,16 @@ export default function AdminProducts() {
   }
 
   const filtered = products.filter((p) => {
-    const matchS = section === 'all' || p.section === section
+    let matchS = false
+    if (section === 'all') {
+      matchS = true
+    } else if (section === 'novedades') {
+      matchS = p.is_new
+    } else if (section === 'outlet') {
+      matchS = p.is_outlet
+    } else {
+      matchS = p.section === section
+    }
     const matchQ = !search || p.name.toLowerCase().includes(search.toLowerCase()) || p.brand?.toLowerCase().includes(search.toLowerCase())
     return matchS && matchQ
   })

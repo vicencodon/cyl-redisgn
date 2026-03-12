@@ -16,6 +16,7 @@ import Favorites from './pages/Favorites'
 // Páginas admin
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminProducts  from './pages/admin/AdminProducts'
+import AdminCategories from './pages/admin/AdminCategories'
 import AdminImages    from './pages/admin/AdminImages'
 import AdminOrders    from './pages/admin/AdminOrders'
 import AdminUsers     from './pages/admin/AdminUsers'
@@ -38,6 +39,7 @@ export default function App() {
     <Routes>
       {/* ── ADMIN (sin Layout público) ── */}
       <Route path="/admin/productos" element={<AdminRoute><AdminProducts /></AdminRoute>} />
+      <Route path="/admin/categorias" element={<AdminRoute><AdminCategories /></AdminRoute>} />
       <Route path="/admin/imagenes" element={<AdminRoute><AdminImages /></AdminRoute>} />
       <Route path="/admin/pedidos" element={<AdminRoute><AdminOrders /></AdminRoute>} />
       <Route path="/admin/usuarios" element={<AdminRoute><AdminUsers /></AdminRoute>} />
@@ -61,6 +63,7 @@ export default function App() {
       {/* ── ADMIN (sin Layout público) ── */}
       <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
       <Route path="/admin/productos" element={<AdminRoute><AdminProducts /></AdminRoute>} />
+      <Route path="/admin/categorias" element={<AdminRoute><AdminCategories /></AdminRoute>} />
       <Route path="*" element={
         <Layout>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 text-center">
