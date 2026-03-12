@@ -12,6 +12,7 @@ import OrderConfirmation from './pages/OrderConfirmation'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Favorites from './pages/Favorites'
+// Las páginas Category y Section fueron eliminadas (duplicadas)
 
 // Páginas admin
 import AdminDashboard from './pages/admin/AdminDashboard'
