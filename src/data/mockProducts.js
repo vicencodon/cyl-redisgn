@@ -19,8 +19,8 @@ const flattenProduct = (p) => {
 export const products = productsData.map(flattenProduct)
 
 export const getProductsBySection = (slug) => {
-  if (slug === 'novedades') return products.filter((p) => p.isNew)
-  if (slug === 'outlet')    return products.filter((p) => p.isOutlet)
+  if (slug === 'novedades') return products.filter((p) => p.isNew || p.is_new)
+  if (slug === 'outlet')    return products.filter((p) => p.isOutlet || p.is_outlet)
   const name = capitalize(slug)
   return products.filter((p) => p.seccion === name)
 }
@@ -35,4 +35,4 @@ export const getProductBySlug = (slug) =>
   products.find((p) => p.slug === slug) ?? null
 
 export const getFeaturedProducts = () =>
-  products.filter((p) => p.isFeatured).slice(0, 6)
+  products.filter((p) => p.isFeatured || p.is_featured).slice(0, 6)
