@@ -95,7 +95,7 @@ export default function Header() {
   const navigate = useNavigate()
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="bg-white/85 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="text-xl font-semibold text-brand-700 tracking-tight">
@@ -106,7 +106,9 @@ export default function Header() {
             {navLinks.map(({ to, label }) => (
               <NavLink key={to} to={to}
                 className={({ isActive }) =>
-                  isActive ? 'text-brand-700 font-medium text-sm' : 'text-gray-600 hover:text-brand-700 text-sm transition-colors'
+                  isActive 
+                    ? 'text-brand-700 font-semibold text-sm tracking-wide relative after:content-[""] after:absolute after:-bottom-5 after:left-0 after:w-full after:h-0.5 after:bg-brand-600' 
+                    : 'text-gray-500 hover:text-brand-600 text-sm font-medium tracking-wide transition-colors relative after:content-[""] after:absolute after:-bottom-5 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all after:duration-300'
                 }>
                 {label}
               </NavLink>

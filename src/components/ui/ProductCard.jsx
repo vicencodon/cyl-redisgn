@@ -5,7 +5,7 @@ export default function ProductCard({ product }) {
   return (
     <Link
       to={`/producto/${product.slug}`}
-      className="group block bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
+      className="group block bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300"
     >
       <ProductImage
         productId={product.id}

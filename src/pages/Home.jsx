@@ -60,7 +60,7 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="bg-brand-50 border-b border-brand-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 text-center animate-fade-in-up">
           {isLoggedIn ? (
             <p className="text-brand-600 font-medium text-lg mb-2">
               {getGreeting()}, {user.firstName} 👋
@@ -137,7 +137,7 @@ export default function Home() {
       <section className="bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14">
           <h2 className="section-title">Explorar por sección</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             {[
               { slug: 'viaje',        label: 'Viaje',        emoji: '🧳' },
               { slug: 'mujer',        label: 'Mujer',        emoji: '👜' },
