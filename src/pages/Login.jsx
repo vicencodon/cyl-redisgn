@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
@@ -11,8 +11,11 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const ok = await login(form.email, form.password)
-    if (ok) navigate('/')
+    const result = await login(form.email, form.password)
+    if (result?.success) {
+      if (result.role === 'admin') navigate('/admin')
+      else navigate('/')
+    }
   }
 
   return (

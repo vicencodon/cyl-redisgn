@@ -1,24 +1,20 @@
 import { Link } from 'react-router-dom'
+import ProductImage from './ProductImage'
 
 export default function ProductCard({ product }) {
   return (
     <Link
       to={`/producto/${product.slug}`}
-      className="group block bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
+      className="group block bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300"
     >
-      <div className="relative aspect-square bg-gray-100 flex items-center justify-center">
-        <span className="text-gray-300 text-xs">Sin imagen</span>
-        {product.isNew && (
-          <span className="absolute top-2 left-2 bg-brand-600 text-white text-xs font-medium px-2 py-0.5 rounded">
-            Nuevo
-          </span>
-        )}
-        {product.isOutlet && (
-          <span className="absolute top-2 left-2 bg-gray-800 text-white text-xs font-medium px-2 py-0.5 rounded">
-            Outlet
-          </span>
-        )}
-      </div>
+      <ProductImage
+        productId={product.id}
+        productName={product.name}
+        section={product.section}
+        updatedAt={product.image_updated_at}
+        imageUrl={product.images?.[0] || product.image || null}
+        size="card"
+      />
       <div className="p-3">
         {product.brand && (
           <p className="text-xs text-gray-400 mb-0.5">{product.brand}</p>
