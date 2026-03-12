@@ -86,6 +86,7 @@ function ProductModal({ product, products = [], onClose, onSaved }) {
   const [error, setError]   = useState(null)
   const [newImageUrl, setNewImageUrl] = useState('')
   const [isDragging, setIsDragging] = useState(false)
+  const [uploading, setUploading] = useState(false)
 
   const uniqueSections = [...new Set([...SECTIONS, ...products.map(p => p.section).filter(Boolean)])]
   const uniqueCategories = [...new Set(products.map(p => p.category).filter(Boolean))].sort()
@@ -99,13 +100,34 @@ function ProductModal({ product, products = [], onClose, onSaved }) {
     setNewImageUrl('');
   }
 
-  const handleFiles = (files) => {
+  const handleFiles = async (files) => {
     const validFiles = Array.from(files).filter(file => file.type.startsWith('image/'))
     if (validFiles.length === 0) return
     
-    // Create temporary object URLs to simulate upload
-    const newUrls = validFiles.map(file => URL.createObjectURL(file))
+    setUploading(true)
+    setError(null) // Reset error before uploading
+    const newUrls = []
+    
+    for (const file of validFiles) {
+      // Forzar extensión .jpg para Supabase (como en AdminImages)
+      const fileName = `img-${Date.now()}-${Math.random().toString(36).substring(7)}.jpg`
+      const path = `products/${fileName}`
+      
+      const { error: uploadErr } = await supabase.storage
+        .from('product-images')
+        .upload(path, file, { contentType: file.type, upsert: true })
+        
+      if (!uploadErr) {
+        const { data } = supabase.storage.from('product-images').getPublicUrl(path)
+        newUrls.push(data.publicUrl)
+      } else {
+        setError(`Error al subir imagen: ${uploadErr.message}`)
+        console.error('Error al subir la imagen:', uploadErr)
+      }
+    }
+    
     setForm(f => ({ ...f, images: [...(f.images || []), ...newUrls] }))
+    setUploading(false)
   }
 
   const onDragOver = (e) => {
@@ -201,14 +223,23 @@ function ProductModal({ product, products = [], onClose, onSaved }) {
                   multiple 
                   accept="image/*" 
                   onChange={(e) => handleFiles(e.target.files)}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  disabled={uploading}
+                  className={`absolute inset-0 w-full h-full opacity-0 ${uploading ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                   title="Haz clic o arrastra imágenes"
                 />
-                <svg className="mx-auto h-8 w-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+                {uploading ? (
+                  <div className="mx-auto h-8 w-8 border-2 border-brand-600 border-t-transparent rounded-full animate-spin mb-2" />
+                ) : (
+                  <svg className="mx-auto h-8 w-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                )}
                 <p className="text-sm font-medium text-gray-700">
-                  <span className="text-brand-600">Haz clic para subir</span> o arrastra y suelta
+                  {uploading ? (
+                    <span className="text-brand-600">Subiendo imágenes...</span>
+                  ) : (
+                    <><span className="text-brand-600">Haz clic para subir</span> o arrastra y suelta</>
+                  )}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">PNG, JPG, WEBP hasta 5MB</p>
               </div>
