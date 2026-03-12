@@ -89,7 +89,7 @@ function UserMenu() {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { totalItems } = useCart()
+  const { totalItems, openDrawer } = useCart()
   const { isLoggedIn, logout, isAdmin } = useAuth()
   const { favorites } = useFavorites()
   const navigate = useNavigate()
@@ -143,7 +143,7 @@ export default function Header() {
             )}
 
             {/* Carrito */}
-            <Link to="/carrito"
+            <button onClick={openDrawer}
               className="relative p-2 text-gray-600 hover:text-brand-700 transition-colors"
               aria-label="Carrito">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +154,7 @@ export default function Header() {
                   {totalItems > 99 ? '99+' : totalItems}
                 </span>
               )}
-            </Link>
+            </button>
 
             {/* Men� hamburguesa m�vil */}
             <button className="md:hidden p-2 text-gray-600 hover:text-brand-700"

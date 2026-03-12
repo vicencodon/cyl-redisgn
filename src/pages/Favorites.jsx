@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import { fetchAllProducts } from '../data/products'
 import { useFavorites } from '../hooks/useFavorites'
 import { useAuth } from '../context/AuthContext'
 import ProductCard from '../components/ui/ProductCard'
@@ -17,7 +18,7 @@ export default function Favorites() {
     // if (!isLoggedIn) navigate('/login')
   }, [])
 
-  // Cargar productos favoritos desde Supabase
+  // Cargar productos favoritos usando lógica mixta (Supabase + Mock)
   useEffect(() => {
     if (!favorites.length) {
       setProducts([])
@@ -25,21 +26,17 @@ export default function Favorites() {
       return
     }
     setLoading(true)
-    supabase
-      .from('products')
-      .select('*')
-      .in('id', favorites)
-      .then(({ data }) => {
-        setProducts(data?.map((p) => ({
-          ...p,
-          seccion:       p.section ? p.section.charAt(0).toUpperCase() + p.section.slice(1) : null,
-          category:      p.category ? p.category.charAt(0).toUpperCase() + p.category.slice(1) : null,
-          originalPrice: p.old_price ? Number(p.old_price) : null,
-          inStock:       p.stock > 0,
-          price:         Number(p.price),
-          color: Array.isArray(p.attributes?.color) ? p.attributes.color[0] : (p.attributes?.color ?? null),
-          ...(p.attributes ?? {}),
-        })) ?? [])
+    
+    // fetchAllProducts ya se encarga de mezclar mocks y reales
+    fetchAllProducts()
+      .then((allProducts) => {
+        // Nos quedamos solo con los que están en la lista de favoritos guardados
+        const favProducts = allProducts.filter(p => favorites.includes(p.id))
+        setProducts(favProducts)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error('Error cargando favoritos:', err)
         setLoading(false)
       })
   }, [favorites.join(',')])

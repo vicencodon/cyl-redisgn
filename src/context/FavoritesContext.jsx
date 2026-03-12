@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import ToastNotification from '../components/ui/ToastNotification'
 
 export const FavoritesContext = createContext(null)
 
@@ -12,6 +13,7 @@ export function FavoritesProvider({ children }) {
     }
   })
   const [loading, setLoading] = useState(false)
+  const [toast, setToast] = useState({ isVisible: false, message: '', type: 'success' })
 
   // Sincronizar con localStorage cuando cambie
   useEffect(() => {
@@ -31,9 +33,14 @@ export function FavoritesProvider({ children }) {
     async (productId) => {
       setFavorites((prev) => {
         const already = prev.includes(productId)
-        return already 
-          ? prev.filter((id) => id !== productId) 
-          : [...prev, productId]
+        
+        if (already) {
+          setToast({ isVisible: true, message: 'Eliminado de favoritos', type: 'info' })
+          return prev.filter((id) => id !== productId)
+        } else {
+          setToast({ isVisible: true, message: 'Guardado en favoritos', type: 'success' })
+          return [...prev, productId]
+        }
       })
     },
     []
@@ -42,6 +49,12 @@ export function FavoritesProvider({ children }) {
   return (
     <FavoritesContext.Provider value={{ favorites, isFavorite, toggleFavorite, loading }}>
       {children}
+      <ToastNotification 
+        message={toast.message} 
+        isVisible={toast.isVisible} 
+        type={toast.type}
+        onClose={() => setToast({ ...toast, isVisible: false })} 
+      />
     </FavoritesContext.Provider>
   )
 }

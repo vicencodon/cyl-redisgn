@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, useCallback } from 'react'
+import ToastNotification from '../components/ui/ToastNotification'
 
 const CartContext = createContext(null)
 
 export function CartProvider({ children }) {
   const [items, setItems] = useState([])
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [toast, setToast] = useState({ isVisible: false, message: '' })
 
   const openDrawer  = useCallback(() => setIsDrawerOpen(true), [])
   const closeDrawer = useCallback(() => setIsDrawerOpen(false), [])
@@ -33,6 +35,7 @@ export function CartProvider({ children }) {
         },
       ]
     })
+    setToast({ isVisible: true, message: 'Añadido al carrito' })
     setIsDrawerOpen(true)
   }, [])
 
@@ -59,6 +62,11 @@ export function CartProvider({ children }) {
       }}
     >
       {children}
+      <ToastNotification 
+        message={toast.message} 
+        isVisible={toast.isVisible} 
+        onClose={() => setToast({ ...toast, isVisible: false })} 
+      />
     </CartContext.Provider>
   )
 }
