@@ -92,6 +92,22 @@ export async function fetchFeaturedProducts() {
   return merged.slice(0, 12)
 }
 
+// ── Productos relacionados (Cross-selling) ───────────────────────────────────
+export async function fetchRelatedProducts(product, limit = 4) {
+  if (!product) return []
+  
+  const allProducts = await fetchAllProducts()
+  
+  // Filtrar por misma sección/categoría y excluir el actual
+  const related = allProducts.filter(p => {
+    if (p.id === product.id) return false
+    return p.section === product.section || p.category === product.category
+  })
+  
+  // Mezclar un poco y limitar
+  return related.sort(() => 0.5 - Math.random()).slice(0, limit)
+}
+
 // ── Rango de precios de una lista ────────────────────────────────────────────
 export function getPriceRange(list) {
   if (!list.length) return [0, 300]

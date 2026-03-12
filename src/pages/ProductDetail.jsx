@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { fetchProductBySlug } from '../data/products'
+import { fetchProductBySlug, fetchRelatedProducts } from '../data/products'
 import { useCart } from '../context/CartContext'
 import { useFavorites } from '../hooks/useFavorites'
 import { useAuth } from '../context/AuthContext'
+import ProductCard from '../components/ui/ProductCard'
 
 export default function ProductDetail() {
   const { slug } = useParams()
@@ -13,14 +14,24 @@ export default function ProductDetail() {
   const navigate = useNavigate()
 
   const [product, setProduct] = useState(null)
+  const [recommended, setRecommended] = useState([])
   const [loading, setLoading] = useState(true)
   const [added, setAdded]     = useState(false)
   const [quantity, setQuantity] = useState(1)
+  
+  // Gallery state
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
+  const [zoomStyle, setZoomStyle] = useState({ transformOrigin: 'center center' })
 
   useEffect(() => {
+    setLoading(true)
     fetchProductBySlug(slug).then((p) => {
       setProduct(p)
+      if (p) {
+        fetchRelatedProducts(p).then(setRecommended)
+      }
       setLoading(false)
+      setActiveImageIndex(0)
     })
   }, [slug])
 
@@ -38,6 +49,13 @@ export default function ProductDetail() {
   const handleFavorite = () => {
     if (!isLoggedIn) { navigate('/login'); return }
     toggleFavorite(product.id)
+  }
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect()
+    const x = ((e.clientX - left) / width) * 100
+    const y = ((e.clientY - top) / height) * 100
+    setZoomStyle({ transformOrigin: `${x}% ${y}%` })
   }
 
   if (loading) {
@@ -85,38 +103,61 @@ export default function ProductDetail() {
       </nav>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Imagen */}
-        <div className="relative aspect-square bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden">
-          {product.images?.[0] ? (
-            <img
-              src={product.images[0]}
-              alt={product.name}
-              className="w-full h-full object-cover"
-              onError={(e) => { e.target.style.display = 'none' }}
-            />
-          ) : (
-            <span className="text-gray-300 text-sm">Sin imagen</span>
-          )}
-          {product.isNew && (
-            <span className="absolute top-3 left-3 bg-brand-600 text-white text-xs font-medium px-2 py-0.5 rounded">
-              Nuevo
-            </span>
-          )}
-          {product.isOutlet && (
-            <span className="absolute top-3 left-3 bg-gray-800 text-white text-xs font-medium px-2 py-0.5 rounded">
-              Outlet
-            </span>
-          )}
-          {/* Botón favorito */}
-          <button
-            onClick={handleFavorite}
-            className="absolute top-3 right-3 p-2 bg-white rounded-full shadow hover:scale-110 transition-transform"
-            aria-label={fav ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+        {/* Galería de Imágenes */}
+        <div className="flex flex-col gap-4">
+          <div 
+            className="relative aspect-[4/5] sm:aspect-square bg-gray-50 rounded-2xl flex items-center justify-center overflow-hidden group cursor-crosshair shadow-sm border border-gray-100"
+            onMouseMove={handleMouseMove}
           >
-            <svg className={`w-5 h-5 ${fav ? 'text-red-500 fill-current' : 'text-gray-400'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-          </button>
+            {product.images?.[activeImageIndex] || product.image ? (
+              <img
+                src={product.images?.[activeImageIndex] || product.image}
+                alt={product.name}
+                className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.8]"
+                style={zoomStyle}
+                onError={(e) => { e.target.style.display = 'none' }}
+              />
+            ) : (
+              <span className="text-gray-300 text-sm">Sin imagen</span>
+            )}
+            {product.isNew && (
+              <span className="absolute top-4 left-4 bg-brand-600 text-white text-xs font-bold tracking-wide px-2.5 py-1 rounded shadow-sm z-10 pointer-events-none">
+                NUEVO
+              </span>
+            )}
+            {product.isOutlet && (
+              <span className="absolute top-4 left-4 bg-gray-900 text-white text-xs font-bold tracking-wide px-2.5 py-1 rounded shadow-sm z-10 pointer-events-none">
+                OUTLET
+              </span>
+            )}
+            {/* Botón favorito */}
+            <button
+              onClick={handleFavorite}
+              className="absolute top-4 right-4 p-2.5 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:scale-110 transition-transform z-10 focus:outline-none"
+              aria-label={fav ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+            >
+              <svg className={`w-5 h-5 ${fav ? 'text-red-500 fill-current' : 'text-gray-400'}`} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
+          </div>
+          
+          {/* Miniaturas */}
+          {product.images && product.images.length > 1 && (
+            <div className="flex gap-3 overflow-x-auto pb-2 hide-scroll-bar">
+              {product.images.map((imgUrl, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`w-20 h-20 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+                    activeImageIndex === idx ? 'border-brand-600 shadow-sm' : 'border-transparent hover:border-gray-200'
+                  }`}
+                >
+                  <img src={imgUrl} alt={`${product.name} thumbnail ${idx + 1}`} className="w-full h-full object-cover bg-gray-50" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Info */}
@@ -217,9 +258,25 @@ export default function ProductDetail() {
 
       {/* Descripción completa */}
       {product.description && (
-        <div className="mt-12 border-t border-gray-100 pt-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-3">Descripción</h2>
-          <p className="text-sm text-gray-600 leading-relaxed">{product.description}</p>
+        <div className="mt-16 border-t border-gray-100 pt-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Descripción del producto</h2>
+          <div className="prose prose-sm md:prose-base text-gray-600 max-w-none">
+            {product.description.split('\n').map((paragraph, idx) => (
+              <p key={idx} className="mb-4">{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Productos Recomendados */}
+      {recommended.length > 0 && (
+        <div className="mt-20 border-t border-gray-100 pt-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">También te podría interesar...</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+            {recommended.map(rec => (
+              <ProductCard key={rec.id} product={rec} />
+            ))}
+          </div>
         </div>
       )}
     </div>
