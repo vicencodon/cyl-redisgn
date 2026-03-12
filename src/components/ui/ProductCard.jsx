@@ -12,6 +12,7 @@ export default function ProductCard({ product }) {
         productName={product.name}
         section={product.section}
         updatedAt={product.image_updated_at}
+        imageUrl={product.images?.[0] || product.image || null}
         size="card"
       />
       <div className="p-3">

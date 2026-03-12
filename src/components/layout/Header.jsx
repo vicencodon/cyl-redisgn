@@ -1,4 +1,4 @@
-﻿import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
 import { useAuth } from '../../context/AuthContext'
@@ -14,7 +14,7 @@ const navLinks = [
 ]
 
 function UserMenu() {
-  const { isLoggedIn, user, logout } = useAuth()
+  const { isLoggedIn, user, logout, isAdmin } = useAuth()
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
   const navigate = useNavigate()
@@ -68,6 +68,12 @@ function UserMenu() {
               className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-brand-700 transition-colors">
               Mis pedidos
             </button>
+            {isAdmin && (
+              <Link to="/admin" onClick={() => setOpen(false)}
+                className="block w-full text-left px-4 py-2 text-sm text-brand-700 font-medium hover:bg-brand-50 transition-colors">
+                Panel Admin
+              </Link>
+            )}
           </div>
           <div className="border-t border-gray-100 py-1">
             <button onClick={handleLogout}
@@ -105,14 +111,6 @@ export default function Header() {
                 {label}
               </NavLink>
             ))}
-            {isAdmin && (
-              <NavLink to="/admin"
-                className={({ isActive }) =>
-                  isActive ? 'text-brand-700 font-semibold text-sm' : 'text-gray-600 hover:text-brand-700 text-sm transition-colors'
-                }>
-                Panel admin
-              </NavLink>
-            )}
           </nav>
 
           <div className="flex items-center gap-1">
@@ -184,13 +182,6 @@ export default function Header() {
                 {label}
               </Link>
             ))}
-            {isAdmin && (
-              <Link to="/admin"
-                className="px-2 py-2 text-sm text-brand-700 font-semibold hover:text-brand-800"
-                onClick={() => setMenuOpen(false)}>
-                Panel admin
-              </Link>
-            )}
             {true && (
               <Link to="/favoritos"
                 className="px-2 py-2 text-sm text-gray-700 hover:text-brand-700 flex items-center gap-2"

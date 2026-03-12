@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../../lib/supabase'
+import ProductImage from '../../components/ui/ProductImage'
 
 const SECTIONS = ['viaje', 'mujer', 'hombre', 'complementos', 'novedades', 'outlet']
 const EMPTY = {
@@ -79,15 +80,58 @@ function ProductModal({ product, products = [], onClose, onSaved }) {
     price: product.price ?? '',
     old_price: product.old_price ?? '',
     stock: product.stock ?? '',
+    images: product.images || [],
   })
   const [saving, setSaving] = useState(false)
   const [error, setError]   = useState(null)
+  const [newImageUrl, setNewImageUrl] = useState('')
+  const [isDragging, setIsDragging] = useState(false)
 
   const uniqueSections = [...new Set([...SECTIONS, ...products.map(p => p.section).filter(Boolean)])]
   const uniqueCategories = [...new Set(products.map(p => p.category).filter(Boolean))].sort()
   const uniqueSubcategories = [...new Set(products.filter(p => !form.category || p.category === form.category).map(p => p.subcategory).filter(Boolean))].sort()
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }))
+
+  const handleAddImage = () => {
+    if (!newImageUrl.trim()) return;
+    setForm(f => ({ ...f, images: [...(f.images || []), newImageUrl.trim()] }));
+    setNewImageUrl('');
+  }
+
+  const handleFiles = (files) => {
+    const validFiles = Array.from(files).filter(file => file.type.startsWith('image/'))
+    if (validFiles.length === 0) return
+    
+    // Create temporary object URLs to simulate upload
+    const newUrls = validFiles.map(file => URL.createObjectURL(file))
+    setForm(f => ({ ...f, images: [...(f.images || []), ...newUrls] }))
+  }
+
+  const onDragOver = (e) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }
+
+  const onDragLeave = (e) => {
+    e.preventDefault()
+    setIsDragging(false)
+  }
+
+  const onDrop = (e) => {
+    e.preventDefault()
+    setIsDragging(false)
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleFiles(e.dataTransfer.files)
+    }
+  }
+
+  const handleRemoveImage = (index) => {
+    setForm(f => ({
+      ...f,
+      images: f.images.filter((_, i) => i !== index)
+    }));
+  }
 
   const handleSubmit = async () => {
     if (!form.name || !form.price || !form.section) {
@@ -139,6 +183,88 @@ function ProductModal({ product, products = [], onClose, onSaved }) {
               <label className="block text-xs font-medium text-gray-600 mb-1">Descripción completa</label>
               <textarea value={form.description} onChange={(e) => set('description', e.target.value)} rows={3}
                 className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 resize-none" />
+            </div>
+            {/* Images */}
+            <div className="col-span-2 border border-gray-100 rounded-xl p-4 bg-gray-50/50">
+              <label className="block text-sm font-medium text-gray-800 mb-3">Imágenes del producto</label>
+              
+              <div 
+                className={`relative border-2 border-dashed rounded-xl p-6 mb-4 text-center transition-colors ${
+                  isDragging ? 'border-brand-500 bg-brand-50' : 'border-gray-200 hover:border-brand-300'
+                }`}
+                onDragOver={onDragOver}
+                onDragLeave={onDragLeave}
+                onDrop={onDrop}
+              >
+                <input 
+                  type="file" 
+                  multiple 
+                  accept="image/*" 
+                  onChange={(e) => handleFiles(e.target.files)}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  title="Haz clic o arrastra imágenes"
+                />
+                <svg className="mx-auto h-8 w-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <p className="text-sm font-medium text-gray-700">
+                  <span className="text-brand-600">Haz clic para subir</span> o arrastra y suelta
+                </p>
+                <p className="text-xs text-gray-400 mt-1">PNG, JPG, WEBP hasta 5MB</p>
+              </div>
+
+              <div className="flex gap-2 items-center mb-4">
+                <hr className="flex-1 border-gray-200" />
+                <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">O usa un enlace web</span>
+                <hr className="flex-1 border-gray-200" />
+              </div>
+
+              <div className="flex gap-2 mb-4">
+                <input 
+                  type="url" 
+                  placeholder="https://ejemplo.com/imagen.jpg"
+                  value={newImageUrl}
+                  onChange={(e) => setNewImageUrl(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddImage())}
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white"
+                />
+                <button 
+                  type="button" 
+                  onClick={handleAddImage}
+                  className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors whitespace-nowrap"
+                >
+                  Añadir URL
+                </button>
+              </div>
+
+              {form.images && form.images.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {form.images.map((url, i) => (
+                    <div key={i} className="group relative aspect-square rounded-lg border border-gray-200 overflow-hidden bg-white">
+                      <img src={url} alt={`Imagen ${i + 1}`} className="w-full h-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveImage(i)}
+                        className="absolute top-1.5 right-1.5 w-6 h-6 bg-white/90 text-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm hover:bg-red-50"
+                        title="Eliminar imagen"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                      {i === 0 && (
+                        <div className="absolute bottom-0 inset-x-0 bg-brand-600/90 text-white text-[10px] font-bold uppercase tracking-wider text-center py-1">
+                          Principal
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
+                  <p className="text-xs text-gray-400">No hay imágenes. Añade una URL arriba.</p>
+                </div>
+              )}
             </div>
             {/* Flags */}
             <div className="col-span-2 flex gap-6">
@@ -264,25 +390,15 @@ export default function AdminProducts() {
                   <td className="px-5 py-3">
                     <div className="relative group w-10 h-10">
                       <div className="w-10 h-10 rounded-md overflow-hidden bg-gray-100 border border-gray-200">
-                        {p.images && p.images.length > 0 ? (
-                          <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-gray-300">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                          </div>
-                        )}
+                        <ProductImage productId={p.id} section={p.section} imageUrl={p.images?.[0] || p.image} className="w-full h-full" />
                       </div>
                       
                       {/* Hover image */}
-                      {p.images && p.images.length > 0 && (
-                        <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 hidden group-hover:block z-50">
-                          <div className="w-64 h-64 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden">
-                            <img src={p.images[0]} alt={p.name} className="w-full h-full object-contain" />
-                          </div>
+                      <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 hidden group-hover:block z-50 pointer-events-none">
+                        <div className="w-64 h-64 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden">
+                          <ProductImage productId={p.id} section={p.section} imageUrl={p.images?.[0] || p.image} size="detail" className="w-full h-full" />
                         </div>
-                      )}
+                      </div>
                     </div>
                   </td>
                   <td className="px-5 py-3">

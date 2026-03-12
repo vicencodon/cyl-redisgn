@@ -55,11 +55,13 @@ export default function ProductImage({
   section = 'complementos',
   className = '',
   size = 'card',
+  imageUrl = null,
 }) {
   const [errored, setErrored] = useState(false)
   const [loaded, setLoaded]   = useState(false)
 
-  const url = !errored ? getProductImageUrl(productId) : null
+  const supabaseUrl = !errored && !imageUrl ? getProductImageUrl(productId) : null
+  const url = !errored ? (imageUrl || supabaseUrl) : null
 
   const containerClass = size === 'detail'
     ? 'relative aspect-square bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center'
